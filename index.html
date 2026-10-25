@@ -9,19 +9,19 @@
     <meta property="og:title" content="Творческая мастерская Кутха">
     <meta property="og:description" content="Моделирование, 3D-печать, изготовление молдов, литьё из силикона, гипса и бетона и лазерная гравировка. Творим, как Кутх.">
     <meta property="og:image" content="https://kutkhstudio.ru/logo.jpeg">
-    <meta name="theme-color" content="#0F172A">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23F97316'/></svg>">
+    <meta name="theme-color" content="#121316">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23B86B4B'/></svg>">
     <style>
         [hidden] { display: none !important; }
         :root {
-            --bg: #0F172A;
-            --card: #1E293B;
-            --text: #F8FAFC;
-            --muted: #94A3B8;
-            --accent: #F97316;
-            --btn: #334155;
-            --btn-hover: #475569;
-            --border: #334155;
+            --bg: #121316;
+            --card: #1C1D21;
+            --text: #E8E3D9;
+            --muted: #8E8A82;
+            --accent: #B86B4B;
+            --btn: #26272B;
+            --btn-hover: #333438;
+            --border: #3A3B40;
             --radius: 16px;
         }
         *{box-sizing:border-box;margin:0;padding:0}
@@ -46,69 +46,52 @@
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 40px 24px 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             text-align: center;
             animation: rise .6s cubic-bezier(.2,.8,.2,1) both;
         }
         @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
         .avatar-wrap{width: 104px; height: 104px; margin: 0 auto 20px; position: relative; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); padding: 3px;}
-        .avatar{
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;
-        }
+        .avatar{ width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 
-        .name{font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25;}
-        .handle{font-size: 14px; color: var(--accent); margin-top: 6px; text-decoration: none; display: inline-block; font-weight: 500;}
+        .name{font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--text);}
+        .handle{font-size: 14px; color: var(--accent); margin-top: 6px; text-decoration: none; display: inline-block; font-weight: 600;}
         .handle:hover{text-decoration: underline;}
 
         .bio{
             font-size: 14px; line-height: 1.6; color: var(--muted);
-            margin: 18px auto 0; max-width: 38ch;
-            white-space: pre-line; text-align: left;
+            margin: 18px auto 0; max-width: 38ch; white-space: pre-line; text-align: left;
         }
 
         .links{display: grid; gap: 10px; margin-top: 32px; text-align: left}
         .link{
-            display: flex; align-items: center; gap: 14px;
-            padding: 12px 16px;
-            border-radius: var(--radius);
-            background: var(--btn);
-            border: 1px solid transparent;
-            color: inherit; text-decoration: none;
-            transition: background .2s, transform .2s, border-color .2s;
-            animation: rise .5s cubic-bezier(.2,.8,.2,1) both;
-            animation-delay: calc(var(--i) * 50ms + 100ms);
+            display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+            border-radius: var(--radius); background: var(--btn); border: 1px solid transparent;
+            color: inherit; text-decoration: none; transition: background .2s, transform .2s, border-color .2s;
+            animation: rise .5s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 50ms + 100ms);
         }
-        .link:hover {
-            background: var(--btn-hover);
-            transform: translateY(-2px);
-            border-color: var(--accent);
-        }
+        .link:hover { background: var(--btn-hover); transform: translateY(-2px); border-color: var(--accent); }
         .link:active { transform: translateY(0) scale(0.99); }
 
         .badge{
-            flex: 0 0 40px; height: 40px; border-radius: 12px;
-            display: grid; place-items: center;
-            background: var(--bc, var(--accent));
-            color: #fff;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+            flex: 0 0 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+            background: var(--bc, var(--accent)); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
         }
         .badge svg, .badge img{width: 20px; height: 20px; display: block; object-fit: contain;}
         .badge svg{fill: currentColor;}
 
         .link-body{flex: 1; min-width: 0}
-        .link-label{font-size: 15px; font-weight: 600; line-height: 1.3}
+        .link-label{font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--text);}
 
         .arrow{
             flex: 0 0 auto; width: 18px; height: 18px; color: var(--muted);
-            opacity: 0.3; transition: opacity .2s, transform .2s, color .2s;
+            opacity: 0.4; transition: opacity .2s, transform .2s, color .2s;
         }
         .link:hover .arrow { opacity: 1; color: var(--accent); transform: translateX(2px); }
         .arrow svg{width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round}
 
-        .footer{
-            margin-top: 32px; font-size: 12px; color: var(--muted); opacity: 0.7;
-        }
+        .footer{ margin-top: 32px; font-size: 12px; color: var(--muted); opacity: 0.8; }
 
         @media (max-width: 420px){
             .card{padding: 32px 18px 24px;}
@@ -118,9 +101,7 @@
             .badge{flex-basis: 36px; height: 36px; border-radius: 10px;}
             .badge svg, .badge img{width: 18px; height: 18px;}
         }
-        @media (prefers-reduced-motion:reduce){
-            *,*::before,*::after{animation:none!important;transition:none!important}
-        }
+        @media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none!important;transition:none!important} }
     </style>
 </head>
 <body>
@@ -137,13 +118,10 @@
 </main>
 <script>
     const CONFIG = {
-        avatar: "logo.jpeg",
-        name: "Творческая мастерская Кутха",
-        handle: "@kutkh23",
+        avatar: "logo.jpeg", name: "Творческая мастерская Кутха", handle: "@kutkh23",
         handleUrl: "https://t.me/kutkh23",
         bio: "Добро пожаловать в Творческую мастерскую Кутха.\nПомогаем вашим идеям обрести форму.\n\nЧем мы занимаемся:\n— Моделирование\n— 3D-печать\n— Изготовление молдов\n— Литьё из силикона, гипса и бетона\n— Лазерная гравировка\n\nРаботаем с частными заказами, творческими мастерскими и малым бизнесом.\n\nТворим, как Кутх.",
-        accent: "#F97316",
-        footer: "© 2026 Kutkh Studio",
+        accent: "#B86B4B", footer: "© 2026 Kutkh Studio",
         links: [
             { label:"Сайт мастерской", url:"https://kutkhstudio.ru/", icon:"site", color:"#10b981" },
             { label:"Telegram", url:"https://t.me/kutkh_studo", icon:"telegram", color:"#26A5E4" },
@@ -154,7 +132,6 @@
             { label:"Boosty", url:"#", icon:"boosty", color:"#F1592A" },
         ]
     };
-
     const ICONS = {
         site: '<path d="M20 4H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 12H4V6h16v10zm-8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>',
         telegram: '<path d="M21.5 2.5L2.5 9.8c-1.3.5-1.3 1.5 0 2l4.8 1.5 1.9 5.7c.2.7.9.8 1.4.3l2.6-2.5 5.2 3.8c1 .6 1.7.3 2-.9l3.7-17.3c.3-1.3-.5-2-1.6-1.5zM17.6 6.1l-7.8 7-.4 4.1-1.8-5.4 10-5.7z"/>',
@@ -164,69 +141,25 @@
         avito: '<path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm4 12l-1-2h-6l-1 2H6l5-10h2l5 10h-2zM11 12h2l-1-2.5-1 2.5z"/>',
         boosty: '<path d="M2.661 14.337 6.801 0h6.362L11.88 4.444l-.038.077-3.378 11.733h3.15c-1.321 3.289-2.35 5.867-3.086 7.733-5.816-.063-7.442-4.228-6.02-9.155M8.554 24l7.67-11.035h-3.25l2.83-7.073c4.852.508 7.137 4.33 5.791 8.952C20.16 19.81 14.344 24 8.68 24h-.127z"/>'
     };
-
     const $ = (id) => document.getElementById(id);
-
     document.documentElement.style.setProperty('--accent', CONFIG.accent);
-    $('name').textContent = CONFIG.name || '';
-    $('bio').textContent = CONFIG.bio || '';
-    $('footer').textContent = CONFIG.footer || '';
-    $('bio').hidden = !CONFIG.bio;
-    $('footer').hidden = !CONFIG.footer;
-
+    $('name').textContent = CONFIG.name || ''; $('bio').textContent = CONFIG.bio || ''; $('footer').textContent = CONFIG.footer || '';
+    $('bio').hidden = !CONFIG.bio; $('footer').hidden = !CONFIG.footer;
     if (CONFIG.handle) {
-        const h = document.createElement(CONFIG.handleUrl ? 'a' : 'span');
-        h.className = 'handle';
-        h.textContent = CONFIG.handle;
-        if (CONFIG.handleUrl) {
-            h.href = CONFIG.handleUrl;
-            h.target = '_blank';
-            h.rel = 'noopener noreferrer';
-        }
+        const h = document.createElement(CONFIG.handleUrl ? 'a' : 'span'); h.className = 'handle'; h.textContent = CONFIG.handle;
+        if (CONFIG.handleUrl) { h.href = CONFIG.handleUrl; h.target = '_blank'; h.rel = 'noopener noreferrer'; }
         $('handleContainer').appendChild(h);
     }
-
-    if (CONFIG.avatar) {
-        const img = $('avatar');
-        img.src = CONFIG.avatar;
-        img.alt = CONFIG.name || 'Аватар';
-        img.hidden = false;
-    }
-
+    if (CONFIG.avatar) { const img = $('avatar'); img.src = CONFIG.avatar; img.alt = CONFIG.name || 'Аватар'; img.hidden = false; }
     const linksEl = $('links');
     CONFIG.links.forEach((item, i) => {
-        const a = document.createElement('a');
-        a.className = 'link';
-        a.href = item.url;
-        a.style.setProperty('--i', i);
-
-        const isExternal = /^https?:\/\//i.test(item.url);
-        if (isExternal) {
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-        }
-
+        const a = document.createElement('a'); a.className = 'link'; a.href = item.url; a.style.setProperty('--i', i);
+        if (/^https?:\/\//i.test(item.url)) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
         let badgeInner = '';
         if (item.icon && ICONS[item.icon]) {
-            const iconCode = ICONS[item.icon];
-            if (iconCode.startsWith('<img')) {
-                badgeInner = iconCode;
-            } else {
-                badgeInner = `<svg viewBox="0 0 24 24">${iconCode}</svg>`;
-            }
-        } else {
-            badgeInner = item.letter || item.label.slice(0, 2).toUpperCase();
-        }
-
-        a.innerHTML = `
-    <span class="badge" style="--bc:${item.color || 'var(--accent)'}">${badgeInner}</span>
-    <span class="link-body">
-      <span class="link-label">${item.label}</span>
-    </span>
-    <span class="arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
-    </span>
-  `;
+            badgeInner = ICONS[item.icon].startsWith('<img') ? ICONS[item.icon] : `<svg viewBox="0 0 24 24">${ICONS[item.icon]}</svg>`;
+        } else { badgeInner = item.letter || item.label.slice(0, 2).toUpperCase(); }
+        a.innerHTML = `<span class="badge" style="--bc:${item.color || 'var(--accent)'}">${badgeInner}</span><span class="link-body"><span class="link-label">${item.label}</span></span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span>`;
         linksEl.appendChild(a);
     });
 </script>
