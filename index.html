@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Творческая мастерская Кутха</title>
+    <meta name="description" content="Помогаем вашим идеям обрести форму. 3D-печать, моделирование, литье, лазерная гравировка.">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Творческая мастерская Кутха">
+    <meta property="og:description" content="Моделирование, 3D-печать, изготовление молдов, литьё из силикона, гипса и бетона и лазерная гравировка. Творим, как Кутх.">
+    <meta property="og:image" content="https://kutkhstudio.ru/logo.jpeg">
+    <meta name="theme-color" content="#0b0f1a">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%236d5efc'/></svg>">
+    <style>
+        [hidden] { display: none !important; }
+        :root{
+            --accent:#6d5efc;
+            --radius:18px;
+        }
+        html[data-theme="dark"]{
+            --bg:#0b0f1a;
+            --card:rgba(255,255,255,.045);
+            --card-border:rgba(255,255,255,.09);
+            --text:#f1f5f9;
+            --muted:#94a3b8;
+            --btn:rgba(255,255,255,.06);
+            --btn-hover:rgba(255,255,255,.12);
+            --shadow:0 24px 70px rgba(0,0,0,.55);
+        }
+        html[data-theme="light"]{
+            --bg:#f4f5fa;
+            --card:rgba(255,255,255,.72);
+            --card-border:rgba(15,23,42,.08);
+            --text:#0f172a;
+            --muted:#64748b;
+            --btn:#ffffff;
+            --btn-hover:#f8fafc;
+            --shadow:0 24px 60px rgba(15,23,42,.10);
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{min-height:100%}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+            background:var(--bg);
+            color:var(--text);
+            min-height:100vh;
+            min-height:100dvh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:28px 16px;
+            position:relative;
+            overflow-x:hidden;
+            -webkit-font-smoothing:antialiased;
+            transition:background .35s ease,color .35s ease;
+        }
+        .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+        .blob{position:absolute;width:62vmax;height:62vmax;border-radius:50%;filter:blur(90px);opacity:.32}
+        .b1{background:var(--accent);top:-22vmax;left:-16vmax;animation:f1 20s ease-in-out infinite}
+        .b2{background:#f472b6;bottom:-26vmax;right:-20vmax;animation:f2 24s ease-in-out infinite}
+        html[data-theme="light"] .blob{opacity:.20}
+        @keyframes f1{50%{transform:translate(6vmax,4vmax) scale(1.12)}}
+        @keyframes f2{50%{transform:translate(-5vmax,-4vmax) scale(1.16)}}
+        .card{
+            position:relative;
+            width:100%;
+            max-width:480px;
+            background:var(--card);
+            border:1px solid var(--card-border);
+            border-radius:30px;
+            padding:38px 24px 26px;
+            box-shadow:var(--shadow);
+            backdrop-filter:blur(24px);
+            -webkit-backdrop-filter:blur(24px);
+            text-align:center;
+            animation:rise .6s cubic-bezier(.2,.8,.2,1) both;
+            transition:background .35s ease,border-color .35s ease;
+        }
+        @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+        .theme-toggle{
+            position:absolute;top:14px;right:14px;
+            width:36px;height:36px;border-radius:50%;
+            display:grid;place-items:center;
+            background:var(--btn);border:1px solid var(--card-border);
+            color:var(--muted);cursor:pointer;
+            transition:background .2s,color .2s,transform .2s;
+        }
+        .theme-toggle:hover{background:var(--btn-hover);color:var(--text);transform:rotate(-15deg)}
+        .theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+        html[data-theme="dark"] .i-moon,
+        html[data-theme="light"] .i-sun{display:none}
+        .avatar-wrap{width:104px;height:104px;margin:0 auto 16px;position:relative;border-radius:50%;overflow:hidden;}
+        .avatar{
+            width:100%;height:100%;border-radius:50%;object-fit:cover;
+            border:3px solid var(--card-border);
+            box-shadow:0 10px 30px rgba(0,0,0,.25);
+            display:block;
+        }
+        .avatar-fallback{
+            width:100%;height:100%;border-radius:50%;
+            display:grid;place-items:center;
+            background:var(--accent);color:#fff;
+            font-size:36px;font-weight:700;letter-spacing:1px;
+            border:3px solid var(--card-border);
+        }
+        .name{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.25; margin-top: 12px;}
+        .handle{font-size:14px;color:var(--muted);margin-top:3px;text-decoration:none;display:inline-block}
+        .handle:hover{color:var(--accent)}
+        .bio{
+            font-size:14px;line-height:1.6;color:var(--muted);
+            margin:14px auto 0;max-width:38ch;
+            white-space:pre-line;
+            text-align:left;
+        }
+        .links{display:grid;gap:10px;margin-top:28px;text-align:left}
+        .link{
+            display:flex;align-items:center;gap:14px;
+            padding:10px 14px;
+            border-radius:var(--radius);
+            background:var(--btn);
+            border:1px solid var(--card-border);
+            color:inherit;text-decoration:none;
+            transition:background .18s,transform .18s,border-color .18s;
+            animation:rise .5s cubic-bezier(.2,.8,.2,1) both;
+            animation-delay:calc(var(--i) * 55ms + 120ms);
+        }
+        .link:hover{background:var(--btn-hover);transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+        .link:active{transform:translateY(0) scale(.99)}
+        .badge{
+            flex:0 0 40px;height:40px;border-radius:13px;
+            display:grid;place-items:center;
+            background:var(--bc,var(--accent));
+            color:#fff;
+            box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
+            user-select:none;
+        }
+        .badge svg{width:20px;height:20px;fill:currentColor;display:block;}
+        .link-body{flex:1;min-width:0}
+        .link-label{font-size:14.5px;font-weight:600;line-height:1.3}
+        .arrow{
+            flex:0 0 auto;width:16px;height:16px;color:var(--muted);
+            opacity:0;transform:translateX(-6px);
+            transition:opacity .2s,transform .2s;
+        }
+        .link:hover .arrow{opacity:.75;transform:translateX(0)}
+        .arrow svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .footer{
+            margin-top:26px;font-size:12px;color:var(--muted);opacity:.75;
+            animation:rise .5s ease both;animation-delay:.6s;
+        }
+        @media (max-width:420px){
+            .card{padding:32px 18px 22px;border-radius:26px}
+            .avatar-wrap{width:88px;height:88px}
+            .name{font-size:20px}
+            .link{padding:9px 12px;gap:12px}
+            .badge{flex-basis:36px;height:36px;border-radius:11px}
+        }
+        @media (prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation:none!important;transition:none!important}
+        }
+    </style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+</div>
+<main class="card">
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+        <svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <div class="avatar-wrap">
+        <img class="avatar" id="avatar" alt="" hidden>
+        <div class="avatar-fallback" id="avatarFallback" hidden></div>
+    </div>
+    <h1 class="name" id="name"></h1>
+    <div id="handleContainer"></div>
+    <p class="bio" id="bio"></p>
+    <nav class="links" id="links" aria-label="Мои ссылки"></nav>
+    <p class="footer" id="footer"></p>
+</main>
+<script>
+    const CONFIG = {
+        avatar: "logo.jpeg",
+        name: "Творческая мастерская Кутха",
+        handle: "@kutkh23",
+        handleUrl: "https://t.me/kutkh23",
+        bio: "Добро пожаловать в Творческую мастерскую Кутха.\nПомогаем вашим идеям обрести форму.\n\nЧем мы занимаемся:\n— Моделирование\n— 3D-печать\n— Изготовление молдов\n— Литьё из силикона, гипса и бетона\n— Лазерная гравировка\n\nРаботаем с частными заказами, творческими мастерскими и малым бизнесом.\n\nТворим, как Кутх.",
+        accent: "#6d5efc",
+        theme: "auto",
+        footer: "© 2026 Kutkh Studio",
+        links: [
+            { label:"Сайт мастерской", url:"https://kutkhstudio.ru/", icon:"site", color:"#10b981" },
+            { label:"Telegram", url:"https://t.me/kutkh_studo", icon:"telegram", color:"#26A5E4" },
+            { label:"Threads", url:"https://www.threads.com/@kutkh_studio", icon:"threads", color:"#000000" },
+            { label:"Instagram", url:"https://www.instagram.com/kutkh_studio", icon:"instagram", color:"#E1306C" },
+            { label:"ВКонтакте", url:"https://vk.ru/dmitriy_lee", icon:"vk", color:"#0077FF" },
+            { label:"Авито", url:"#", icon:"avito", color:"#005BFF" },
+            { label:"Boosty", url:"#", icon:"boosty", color:"#F1592A" },
+        ]
+    };
 
+    const ICONS = {
+        site: '<svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 12H4V6h16v10zm-8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>',
+        telegram: '<svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>',
+        threads: '<svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.287 3.263-.809.993-1.927 1.587-3.324 1.768-1.138.147-2.258-.058-3.15-.579-1.005-.586-1.65-1.524-1.818-2.638-.322-2.15.946-3.71 2.476-4.407.967-.44 2.164-.685 3.553-.731-.21-1.118-.658-1.905-1.348-2.365-.823-.548-1.943-.685-3.125-.61l-.145-2.118c1.508-.098 2.995.097 4.165.86 1.024.668 1.73 1.69 2.102 3.058.8-.065 1.559-.033 2.24.128 2.346.555 3.844 2.086 4.33 4.13.612 2.573-.134 5.46-2.392 7.35-1.895 1.588-4.258 2.392-7.028 2.392z"/></svg>',
+        instagram: '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>',
+        vk: '<svg viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.847 2.456 2.27 4.607 2.861 4.607.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.762-.491h1.744c.525 0 .644.271.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.745-.576.745z"/></svg>',
+        avito: '<svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm4 12l-1-2h-6l-1 2H6l5-10h2l5 10h-2zM11 12h2l-1-2.5-1 2.5z"/></svg>',
+        boosty: '<svg viewBox="0 0 24 24"><path d="M2.661 14.337 6.801 0h6.362L11.88 4.444l-.038.077-3.378 11.733h3.15c-1.321 3.289-2.35 5.867-3.086 7.733-5.816-.063-7.442-4.228-6.02-9.155M8.554 24l7.67-11.035h-3.25l2.83-7.073c4.852.508 7.137 4.33 5.791 8.952C20.16 19.81 14.344 24 8.68 24h-.127z"/></svg>'
+    };
+    const $ = (id) => document.getElementById(id);
+    const root = document.documentElement;
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    root.dataset.theme = savedTheme || (CONFIG.theme === 'auto' ? (sysDark ? 'dark' : 'light') : CONFIG.theme);
+    $('themeToggle').addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('theme', next);
+        document.querySelector('meta[name="theme-color"]')
+            .setAttribute('content', next === 'dark' ? '#0b0f1a' : '#f4f5fa');
+    });
+    if (CONFIG.accent) root.style.setProperty('--accent', CONFIG.accent);
+    $('name').textContent = CONFIG.name || '';
+    $('bio').textContent = CONFIG.bio || '';
+    $('footer').textContent = CONFIG.footer || '';
+    $('bio').hidden = !CONFIG.bio;
+    $('footer').hidden = !CONFIG.footer;
+    if (CONFIG.handle) {
+        const h = document.createElement(CONFIG.handleUrl ? 'a' : 'span');
+        h.className = 'handle';
+        h.textContent = CONFIG.handle;
+        if (CONFIG.handleUrl) {
+            h.href = CONFIG.handleUrl;
+            h.target = '_blank';
+            h.rel = 'noopener noreferrer';
+        }
+        $('handleContainer').appendChild(h);
+    }
+    const initials = (CONFIG.name || '?')
+        .split(' ').filter(Boolean).slice(0, 2)
+        .map(w => w[0].toUpperCase()).join('');
+    if (CONFIG.avatar) {
+        const img = $('avatar');
+        img.src = CONFIG.avatar;
+        img.alt = CONFIG.name || 'Аватар';
+        img.hidden = false;
+        img.addEventListener('error', () => {
+            img.remove();
+            const fb = $('avatarFallback');
+            fb.textContent = initials;
+            fb.hidden = false;
+        });
+    } else {
+        $('avatar').remove();
+        const fb = $('avatarFallback');
+        fb.textContent = initials;
+        fb.hidden = false;
+    }
+    const linksEl = $('links');
+    CONFIG.links.forEach((item, i) => {
+        const a = document.createElement('a');
+        a.className = 'link';
+        a.href = item.url;
+        a.style.setProperty('--i', i);
+        const isExternal = /^https?:\/\//i.test(item.url);
+        if (isExternal) {
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+        }
+
+        const badgeInner = (item.icon && ICONS[item.icon])
+            ? ICONS[item.icon]
+            : (item.letter || item.label.slice(0, 2).toUpperCase());
+
+        a.innerHTML = `
+    <span class="badge" style="--bc:${item.color || 'var(--accent)'}">${badgeInner}</span>
+    <span class="link-body">
+      <span class="link-label">${item.label}</span>
+    </span>
+    <span class="arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+    </span>
+  `;
+        linksEl.appendChild(a);
+    });
+</script>
+</body>
+</html>
