@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -9,154 +9,114 @@
     <meta property="og:title" content="Творческая мастерская Кутха">
     <meta property="og:description" content="Моделирование, 3D-печать, изготовление молдов, литьё из силикона, гипса и бетона и лазерная гравировка. Творим, как Кутх.">
     <meta property="og:image" content="https://kutkhstudio.ru/logo.jpeg">
-    <meta name="theme-color" content="#0b0f1a">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%236d5efc'/></svg>">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23F97316'/></svg>">
     <style>
         [hidden] { display: none !important; }
-        :root{
-            --accent:#6d5efc;
-            --radius:18px;
-        }
-        html[data-theme="dark"]{
-            --bg:#0b0f1a;
-            --card:rgba(255,255,255,.045);
-            --card-border:rgba(255,255,255,.09);
-            --text:#f1f5f9;
-            --muted:#94a3b8;
-            --btn:rgba(255,255,255,.06);
-            --btn-hover:rgba(255,255,255,.12);
-            --shadow:0 24px 70px rgba(0,0,0,.55);
-        }
-        html[data-theme="light"]{
-            --bg:#f4f5fa;
-            --card:rgba(255,255,255,.72);
-            --card-border:rgba(15,23,42,.08);
-            --text:#0f172a;
-            --muted:#64748b;
-            --btn:#ffffff;
-            --btn-hover:#f8fafc;
-            --shadow:0 24px 60px rgba(15,23,42,.10);
+        :root {
+            --bg: #0F172A;
+            --card: #1E293B;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --accent: #F97316;
+            --btn: #334155;
+            --btn-hover: #475569;
+            --border: #334155;
+            --radius: 16px;
         }
         *{box-sizing:border-box;margin:0;padding:0}
         html,body{min-height:100%}
         body{
-            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-            background:var(--bg);
-            color:var(--text);
-            min-height:100vh;
-            min-height:100dvh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:28px 16px;
-            position:relative;
-            overflow-x:hidden;
-            -webkit-font-smoothing:antialiased;
-            transition:background .35s ease,color .35s ease;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 16px;
+            -webkit-font-smoothing: antialiased;
         }
-        .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-        .blob{position:absolute;width:62vmax;height:62vmax;border-radius:50%;filter:blur(90px);opacity:.32}
-        .b1{background:var(--accent);top:-22vmax;left:-16vmax;animation:f1 20s ease-in-out infinite}
-        .b2{background:#f472b6;bottom:-26vmax;right:-20vmax;animation:f2 24s ease-in-out infinite}
-        html[data-theme="light"] .blob{opacity:.20}
-        @keyframes f1{50%{transform:translate(6vmax,4vmax) scale(1.12)}}
-        @keyframes f2{50%{transform:translate(-5vmax,-4vmax) scale(1.16)}}
         .card{
-            position:relative;
-            width:100%;
-            max-width:480px;
-            background:var(--card);
-            border:1px solid var(--card-border);
-            border-radius:30px;
-            padding:38px 24px 26px;
-            box-shadow:var(--shadow);
-            backdrop-filter:blur(24px);
-            -webkit-backdrop-filter:blur(24px);
-            text-align:center;
-            animation:rise .6s cubic-bezier(.2,.8,.2,1) both;
-            transition:background .35s ease,border-color .35s ease;
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 24px 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: rise .6s cubic-bezier(.2,.8,.2,1) both;
         }
         @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-        .theme-toggle{
-            position:absolute;top:14px;right:14px;
-            width:36px;height:36px;border-radius:50%;
-            display:grid;place-items:center;
-            background:var(--btn);border:1px solid var(--card-border);
-            color:var(--muted);cursor:pointer;
-            transition:background .2s,color .2s,transform .2s;
-        }
-        .theme-toggle:hover{background:var(--btn-hover);color:var(--text);transform:rotate(-15deg)}
-        .theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-        html[data-theme="dark"] .i-moon,
-        html[data-theme="light"] .i-sun{display:none}
-        .avatar-wrap{width:104px;height:104px;margin:0 auto 16px;position:relative;border-radius:50%;overflow:hidden;}
+
+        .avatar-wrap{width: 104px; height: 104px; margin: 0 auto 20px; position: relative; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); padding: 3px;}
         .avatar{
-            width:100%;height:100%;border-radius:50%;object-fit:cover;
-            border:3px solid var(--card-border);
-            box-shadow:0 10px 30px rgba(0,0,0,.25);
-            display:block;
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;
         }
-        .avatar-fallback{
-            width:100%;height:100%;border-radius:50%;
-            display:grid;place-items:center;
-            background:var(--accent);color:#fff;
-            font-size:36px;font-weight:700;letter-spacing:1px;
-            border:3px solid var(--card-border);
-        }
-        .name{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.25; margin-top: 12px;}
-        .handle{font-size:14px;color:var(--muted);margin-top:3px;text-decoration:none;display:inline-block}
-        .handle:hover{color:var(--accent)}
+
+        .name{font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25;}
+        .handle{font-size: 14px; color: var(--accent); margin-top: 6px; text-decoration: none; display: inline-block; font-weight: 500;}
+        .handle:hover{text-decoration: underline;}
+
         .bio{
-            font-size:14px;line-height:1.6;color:var(--muted);
-            margin:14px auto 0;max-width:38ch;
-            white-space:pre-line;
-            text-align:left;
+            font-size: 14px; line-height: 1.6; color: var(--muted);
+            margin: 18px auto 0; max-width: 38ch;
+            white-space: pre-line; text-align: left;
         }
-        .links{display:grid;gap:10px;margin-top:28px;text-align:left}
+
+        .links{display: grid; gap: 10px; margin-top: 32px; text-align: left}
         .link{
-            display:flex;align-items:center;gap:14px;
-            padding:10px 14px;
-            border-radius:var(--radius);
-            background:var(--btn);
-            border:1px solid var(--card-border);
-            color:inherit;text-decoration:none;
-            transition:background .18s,transform .18s,border-color .18s;
-            animation:rise .5s cubic-bezier(.2,.8,.2,1) both;
-            animation-delay:calc(var(--i) * 55ms + 120ms);
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            background: var(--btn);
+            border: 1px solid transparent;
+            color: inherit; text-decoration: none;
+            transition: background .2s, transform .2s, border-color .2s;
+            animation: rise .5s cubic-bezier(.2,.8,.2,1) both;
+            animation-delay: calc(var(--i) * 50ms + 100ms);
         }
-        .link:hover{background:var(--btn-hover);transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
-        .link:active{transform:translateY(0) scale(.99)}
+        .link:hover {
+            background: var(--btn-hover);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+        .link:active { transform: translateY(0) scale(0.99); }
+
         .badge{
-            flex:0 0 40px;height:40px;border-radius:13px;
-            display:grid;place-items:center;
-            background:var(--bc,var(--accent));
-            color:#fff;
-            box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);
-            user-select:none;
+            flex: 0 0 40px; height: 40px; border-radius: 12px;
+            display: grid; place-items: center;
+            background: var(--bc, var(--accent));
+            color: #fff;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
         }
-        .badge svg, .badge img{width:20px;height:20px;display:block;object-fit: contain;}
-        .badge svg{fill:currentColor;}
-        .link-body{flex:1;min-width:0}
-        .link-label{font-size:14.5px;font-weight:600;line-height:1.3}
-        .link-sub{font-size:12.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .badge svg, .badge img{width: 20px; height: 20px; display: block; object-fit: contain;}
+        .badge svg{fill: currentColor;}
+
+        .link-body{flex: 1; min-width: 0}
+        .link-label{font-size: 15px; font-weight: 600; line-height: 1.3}
+
         .arrow{
-            flex:0 0 auto;width:16px;height:16px;color:var(--muted);
-            opacity:0;transform:translateX(-6px);
-            transition:opacity .2s,transform .2s;
+            flex: 0 0 auto; width: 18px; height: 18px; color: var(--muted);
+            opacity: 0.3; transition: opacity .2s, transform .2s, color .2s;
         }
-        .link:hover .arrow{opacity:.75;transform:translateX(0)}
-        .arrow svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .link:hover .arrow { opacity: 1; color: var(--accent); transform: translateX(2px); }
+        .arrow svg{width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round}
+
         .footer{
-            margin-top:26px;font-size:12px;color:var(--muted);opacity:.75;
-            animation:rise .5s ease both;animation-delay:.6s;
+            margin-top: 32px; font-size: 12px; color: var(--muted); opacity: 0.7;
         }
-        @media (max-width:420px){
-            .card{padding:32px 18px 22px;border-radius:26px}
-            .avatar-wrap{width:88px;height:88px}
-            .name{font-size:20px}
-            .link{padding:9px 12px;gap:12px}
-            .badge{flex-basis:36px;height:36px;border-radius:11px}
-            .badge svg, .badge img{width:18px;height:18px;}
+
+        @media (max-width: 420px){
+            .card{padding: 32px 18px 24px;}
+            .avatar-wrap{width: 88px; height: 88px;}
+            .name{font-size: 20px;}
+            .link{padding: 10px 14px; gap: 12px;}
+            .badge{flex-basis: 36px; height: 36px; border-radius: 10px;}
+            .badge svg, .badge img{width: 18px; height: 18px;}
         }
         @media (prefers-reduced-motion:reduce){
             *,*::before,*::after{animation:none!important;transition:none!important}
@@ -164,15 +124,7 @@
     </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true">
-    <span class="blob b1"></span>
-    <span class="blob b2"></span>
-</div>
 <main class="card">
-    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
-        <svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
-    </button>
     <div class="avatar-wrap">
         <img class="avatar" id="avatar" alt="" hidden>
         <div class="avatar-fallback" id="avatarFallback" hidden></div>
@@ -190,8 +142,7 @@
         handle: "@kutkh23",
         handleUrl: "https://t.me/kutkh23",
         bio: "Добро пожаловать в Творческую мастерскую Кутха.\nПомогаем вашим идеям обрести форму.\n\nЧем мы занимаемся:\n— Моделирование\n— 3D-печать\n— Изготовление молдов\n— Литьё из силикона, гипса и бетона\n— Лазерная гравировка\n\nРаботаем с частными заказами, творческими мастерскими и малым бизнесом.\n\nТворим, как Кутх.",
-        accent: "#6d5efc",
-        theme: "auto",
+        accent: "#F97316",
         footer: "© 2026 Kutkh Studio",
         links: [
             { label:"Сайт мастерской", url:"https://kutkhstudio.ru/", icon:"site", color:"#10b981" },
@@ -215,20 +166,8 @@
     };
 
     const $ = (id) => document.getElementById(id);
-    const root = document.documentElement;
-    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-    root.dataset.theme = savedTheme || (CONFIG.theme === 'auto' ? (sysDark ? 'dark' : 'light') : CONFIG.theme);
 
-    $('themeToggle').addEventListener('click', () => {
-        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem('theme', next);
-        document.querySelector('meta[name="theme-color"]')
-            .setAttribute('content', next === 'dark' ? '#0b0f1a' : '#f4f5fa');
-    });
-
-    if (CONFIG.accent) root.style.setProperty('--accent', CONFIG.accent);
+    document.documentElement.style.setProperty('--accent', CONFIG.accent);
     $('name').textContent = CONFIG.name || '';
     $('bio').textContent = CONFIG.bio || '';
     $('footer').textContent = CONFIG.footer || '';
@@ -247,24 +186,11 @@
         $('handleContainer').appendChild(h);
     }
 
-    const initials = (CONFIG.name || '?').split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
-
     if (CONFIG.avatar) {
         const img = $('avatar');
         img.src = CONFIG.avatar;
         img.alt = CONFIG.name || 'Аватар';
         img.hidden = false;
-        img.addEventListener('error', () => {
-            img.remove();
-            const fb = $('avatarFallback');
-            fb.textContent = initials;
-            fb.hidden = false;
-        });
-    } else {
-        $('avatar').remove();
-        const fb = $('avatarFallback');
-        fb.textContent = initials;
-        fb.hidden = false;
     }
 
     const linksEl = $('links');
@@ -296,7 +222,6 @@
     <span class="badge" style="--bc:${item.color || 'var(--accent)'}">${badgeInner}</span>
     <span class="link-body">
       <span class="link-label">${item.label}</span>
-      ${item.sub ? `<span class="link-sub">${item.sub}</span>` : ''}
     </span>
     <span class="arrow" aria-hidden="true">
       <svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
