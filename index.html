@@ -9,25 +9,25 @@
     <meta property="og:title" content="Творческая мастерская Кутха">
     <meta property="og:description" content="Моделирование, 3D-печать, изготовление молдов, литьё из силикона, гипса и бетона и лазерная гравировка. Творим, как Кутх.">
     <meta property="og:image" content="https://kutkhstudio.ru/logo.jpeg">
-    <meta name="theme-color" content="#121316">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23B86B4B'/></svg>">
+    <meta name="theme-color" content="#120D0A">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23B87333'/></svg>">
     <style>
         [hidden] { display: none !important; }
         :root {
-            --bg: #121316;
-            --card: #1C1D21;
-            --text: #E8E3D9;
-            --muted: #8E8A82;
-            --accent: #B86B4B;
-            --btn: #26272B;
-            --btn-hover: #333438;
-            --border: #3A3B40;
-            --radius: 16px;
+            --bg: #120D0A;
+            --card: #1C1411;
+            --text: #E8DAC1;
+            --muted: #A38C71;
+            --accent: #B87333;
+            --btn: #2E1F1A;
+            --btn-hover: #3D2A23;
+            --border: #5E3A26;
+            --radius: 6px;
         }
         *{box-sizing:border-box;margin:0;padding:0}
         html,body{min-height:100%}
         body{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Georgia", "Times New Roman", serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -43,62 +43,78 @@
             width: 100%;
             max-width: 480px;
             background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
             padding: 40px 24px 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
             animation: rise .6s cubic-bezier(.2,.8,.2,1) both;
         }
         @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-        .avatar-wrap{width: 104px; height: 104px; margin: 0 auto 20px; position: relative; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); padding: 3px;}
-        .avatar{ width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+        .avatar-wrap{
+            width: 104px; height: 104px; margin: 0 auto 20px;
+            position: relative; border-radius: 50%; overflow: hidden;
+            border: 3px solid var(--accent); padding: 3px;
+            box-shadow: 0 0 15px rgba(184, 115, 51, 0.3);
+        }
+        .avatar{ width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; filter: sepia(0.2) contrast(1.1); }
 
-        .name{font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: var(--text);}
-        .handle{font-size: 14px; color: var(--accent); margin-top: 6px; text-decoration: none; display: inline-block; font-weight: 600;}
-        .handle:hover{text-decoration: underline;}
+        .name{font-size: 24px; font-weight: bold; letter-spacing: 1px; line-height: 1.25; color: var(--text); text-transform: uppercase;}
+        .handle{font-size: 15px; color: var(--accent); margin-top: 8px; text-decoration: none; display: inline-block; font-style: italic;}
+        .handle:hover{text-decoration: underline; text-shadow: 0 0 10px rgba(184, 115, 51, 0.5);}
 
         .bio{
             font-size: 14px; line-height: 1.6; color: var(--muted);
-            margin: 18px auto 0; max-width: 38ch; white-space: pre-line; text-align: left;
+            margin: 20px auto 0; max-width: 38ch; white-space: pre-line; text-align: left;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
-        .links{display: grid; gap: 10px; margin-top: 32px; text-align: left}
+        .links{display: grid; gap: 12px; margin-top: 32px; text-align: left}
         .link{
             display: flex; align-items: center; gap: 14px; padding: 12px 16px;
-            border-radius: var(--radius); background: var(--btn); border: 1px solid transparent;
-            color: inherit; text-decoration: none; transition: background .2s, transform .2s, border-color .2s;
-            animation: rise .5s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 50ms + 100ms);
+            border-radius: var(--radius); background: linear-gradient(to bottom, var(--btn), #1A110D);
+            border: 1px solid var(--border);
+            color: inherit; text-decoration: none;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.5);
+            transition: all .2s ease;
+            animation: rise .5s cubic-bezier(.2,.8,.2,1) both;
+            animation-delay: calc(var(--i) * 50ms + 100ms);
         }
-        .link:hover { background: var(--btn-hover); transform: translateY(-2px); border-color: var(--accent); }
-        .link:active { transform: translateY(0) scale(0.99); }
+        .link:hover {
+            background: linear-gradient(to bottom, var(--btn-hover), #241713);
+            border-color: var(--accent);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 12px rgba(184, 115, 51, 0.2);
+            transform: translateY(-1px);
+        }
 
         .badge{
-            flex: 0 0 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
-            background: var(--bc, var(--accent)); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+            flex: 0 0 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+            background: var(--bc, var(--accent)); color: #fff;
+            border: 2px solid #5E3A26;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
         .badge svg, .badge img{width: 20px; height: 20px; display: block; object-fit: contain;}
         .badge svg{fill: currentColor;}
 
         .link-body{flex: 1; min-width: 0}
-        .link-label{font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--text);}
+        .link-label{font-size: 16px; font-weight: bold; line-height: 1.3; color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0.5px;}
 
         .arrow{
-            flex: 0 0 auto; width: 18px; height: 18px; color: var(--muted);
-            opacity: 0.4; transition: opacity .2s, transform .2s, color .2s;
+            flex: 0 0 auto; width: 18px; height: 18px; color: var(--accent);
+            opacity: 0.4; transition: opacity .2s, transform .2s;
         }
-        .link:hover .arrow { opacity: 1; color: var(--accent); transform: translateX(2px); }
+        .link:hover .arrow { opacity: 1; transform: translateX(2px); }
         .arrow svg{width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round}
 
-        .footer{ margin-top: 32px; font-size: 12px; color: var(--muted); opacity: 0.8; }
+        .footer{ margin-top: 32px; font-size: 12px; color: var(--muted); opacity: 0.8; font-family: monospace; letter-spacing: 1px;}
 
         @media (max-width: 420px){
             .card{padding: 32px 18px 24px;}
             .avatar-wrap{width: 88px; height: 88px;}
             .name{font-size: 20px;}
             .link{padding: 10px 14px; gap: 12px;}
-            .badge{flex-basis: 36px; height: 36px; border-radius: 10px;}
+            .badge{flex-basis: 36px; height: 36px;}
             .badge svg, .badge img{width: 18px; height: 18px;}
         }
         @media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none!important;transition:none!important} }
@@ -121,7 +137,7 @@
         avatar: "logo.jpeg", name: "Творческая мастерская Кутха", handle: "@kutkh23",
         handleUrl: "https://t.me/kutkh23",
         bio: "Добро пожаловать в Творческую мастерскую Кутха.\nПомогаем вашим идеям обрести форму.\n\nЧем мы занимаемся:\n— Моделирование\n— 3D-печать\n— Изготовление молдов\n— Литьё из силикона, гипса и бетона\n— Лазерная гравировка\n\nРаботаем с частными заказами, творческими мастерскими и малым бизнесом.\n\nТворим, как Кутх.",
-        accent: "#B86B4B", footer: "© 2026 Kutkh Studio",
+        accent: "#B87333", footer: "© 2026 Kutkh Studio",
         links: [
             { label:"Сайт мастерской", url:"https://kutkhstudio.ru/", icon:"site", color:"#10b981" },
             { label:"Telegram", url:"https://t.me/kutkh_studo", icon:"telegram", color:"#26A5E4" },
